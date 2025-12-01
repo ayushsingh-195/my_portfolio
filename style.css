@@ -1,0 +1,551 @@
+/* =====================================================
+GLOBAL STYLES & VARIABLES
+=====================================================
+*/
+:root {
+    /* Color Palette (More than 2 colors as requested) */
+    --primary-blue: #007bff; /* Primary Blue (Technology/Reliability) */
+    --secondary-green: #28a745; /* Secondary Green (Growth/Progress) */
+    --tertiary-amber: #ffc107; /* Tertiary Amber (Energy/Learning) */
+    --quaternary-red: #dc3545; /* Quaternary Red (Creativity/Attention) */
+    
+    /* Background/Text Colors (Light Grey Theme) */
+    --primary-light: #ededed; /* Very light grey for soft section background */
+    --secondary-dark: #343a40; /* Dark gray for main text */
+    --bg-light: #f5f5f5; /* Main body background is light grey */
+    --text-on-dark: #ffffff; /* Card/Navbar background remains pure white for contrast */
+    
+    /* Design Elements */
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Stronger shadow */
+    --border-radius: 10px; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--secondary-dark);
+    background-color: var(--bg-light); /* Applied light grey background */
+    scroll-behavior: smooth;
+}
+
+.container {
+    /* REDUCED SIZE: Max width is now 1000px (was 1200px) */
+    max-width: 1000px; 
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Reusable Section Styles */
+section {
+    /* REDUCED SIZE: Vertical padding is now 60px (was 80px) */
+    padding: 60px 0; 
+    text-align: center;
+}
+
+/* Alternating background colors for sections for better visual separation */
+section:nth-child(even) {
+    background-color: var(--primary-light); /* Light grey accent for even sections */
+}
+
+section:nth-child(odd):not(#home) {
+    background-color: var(--text-on-dark); /* White for odd sections */
+}
+
+/* Stylish Heading (H2) */
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    color: var(--primary-blue);
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 100px; /* Wider underline */
+    height: 5px; /* Thicker underline */
+    background: var(--secondary-green); /* Line uses Green accent */
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* Custom highlight class for key text */
+.highlight {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+/* =====================================================
+ANIMATION FOR PROJECT ICONS
+=====================================================
+*/
+@keyframes float-animation {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); } /* Moves up 5px */
+    100% { transform: translateY(0); }
+}
+
+.project-icon {
+    display: inline-block;
+    font-size: 1.5em; /* Size of the icon/emoji */
+    margin-right: 10px;
+    /* Apply subtle animation to all icons */
+    animation: float-animation 3s ease-in-out infinite; 
+}
+
+/* Stagger the animation timing for variety */
+.project-card:nth-child(2) .project-icon { animation-delay: 0.5s; }
+.project-card:nth-child(3) .project-icon { animation-delay: 1s; }
+.project-card:nth-child(4) .project-icon { animation-delay: 1.5s; }
+
+
+/*
+=====================================================
+NAVIGATION BAR
+=====================================================
+*/
+.navbar {
+    background-color: var(--text-on-dark);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 1.7em; 
+    font-weight: 900; 
+    color: var(--primary-blue);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); 
+}
+
+.nav-links a {
+    color: var(--secondary-dark);
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 600;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+/* HOVER EFFECT ADDED: Navigation Link Hover */
+.nav-links a:hover {
+    color: var(--secondary-green);
+    border-bottom: 2px solid var(--secondary-green);
+    padding-bottom: 2px;
+}
+
+/*
+=====================================================
+1. HOME SECTION (HERO)
+=====================================================
+*/
+#home {
+    padding: 60px 20px; /* Reduced padding here too */
+    background: linear-gradient(135deg, var(--text-on-dark) 60%, var(--primary-light) 100%); 
+    min-height: 85vh; 
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.profile-pic {
+    width: 180px; 
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid var(--secondary-green);
+    box-shadow: 0 0 0 4px var(--primary-blue);
+    margin-bottom: 25px;
+}
+
+.hero-content h1 {
+    font-size: 4em; 
+    color: var(--secondary-dark);
+    margin-bottom: 10px;
+    font-weight: 800; 
+    letter-spacing: -1px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.hero-content p {
+    font-size: 1.5em; 
+    color: var(--primary-blue);
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.hero-content .details {
+    font-size: 1.1em;
+    color: var(--secondary-dark);
+    opacity: 0.9;
+}
+
+/* HOVER EFFECT: CTA Button (already present, ensured) */
+.cta-button {
+    display: inline-block;
+    padding: 14px 35px; 
+    background-color: var(--secondary-green);
+    color: var(--text-on-dark);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4); 
+}
+
+.cta-button:hover {
+    background-color: #1e7e34;
+    transform: translateY(-3px); 
+}
+
+/*
+=====================================================
+2. ABOUT SECTION
+=====================================================
+*/
+#about p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.15em;
+    text-align: left;
+    padding: 0 10px;
+    color: #555; 
+    line-height: 1.8; 
+    letter-spacing: 0.2px;
+}
+
+.specialization-detail {
+    margin-top: 20px; 
+    line-height: 1.8; 
+    letter-spacing: 0.2px;
+    text-align: center !important; 
+}
+
+/*
+=====================================================
+3. SKILLS SECTION
+=====================================================
+*/
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px; 
+    max-width: 950px; /* Reduced max-width for smaller look */
+    margin: 0 auto;
+}
+
+/* HOVER EFFECT: Skill Card Hover (already present, ensured) */
+.skill-card {
+    background-color: var(--text-on-dark);
+    padding: 25px; 
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    width: calc(33% - 25px);
+    min-width: 280px;
+    text-align: left;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-8px); 
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.15); 
+}
+
+/* Skill Card Color Theming (Top Border & Heading) */
+.skill-card:nth-child(1) { border-top: 5px solid var(--primary-blue); }
+.skill-card:nth-child(1) h4, .skill-card:nth-child(1) li::before { color: var(--primary-blue); }
+
+.skill-card:nth-child(2) { border-top: 5px solid var(--secondary-green); } 
+.skill-card:nth-child(2) h4, .skill-card:nth-child(2) li::before { color: var(--secondary-green); }
+
+.skill-card:nth-child(3) { border-top: 5px solid var(--tertiary-amber); } 
+.skill-card:nth-child(3) h4, .skill-card:nth-child(3) li::before { color: var(--tertiary-amber); }
+
+.skill-card h4 {
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    margin-bottom: 15px;
+}
+
+
+.skill-card ul {
+    list-style: none;
+    padding-left: 0;
+    text-align: left;
+}
+
+.skill-card li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--primary-light); 
+    position: relative;
+    padding-left: 20px;
+}
+
+/* Adding a colored bullet point */
+.skill-card li::before {
+    content: '\2022'; 
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    position: absolute;
+    left: 0;
+    font-size: 1.2em; 
+}
+
+.skill-card li:last-child {
+    border-bottom: none;
+}
+
+/*
+=====================================================
+4. PROJECTS SECTION
+=====================================================
+*/
+.projects-grid {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-content: center;
+    gap: 30px;
+    max-width: 900px; /* Reduced max-width for smaller look */
+    margin: 0 auto;
+}
+
+/* HOVER EFFECT: Project Card Hover (already present, ensured) */
+.project-card {
+    background-color: var(--text-on-dark);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    text-align: left;
+    transition: transform 0.3s, border-bottom 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px); 
+}
+
+/* Project Card Color Theming (Bottom Border & Link Button) */
+.project-card:nth-child(1) { border-bottom: 5px solid var(--primary-blue); }
+.project-card:nth-child(2) { border-bottom: 5px solid var(--secondary-green); }
+.project-card:nth-child(3) { border-bottom: 5px solid var(--tertiary-amber); }
+.project-card:nth-child(4) { border-bottom: 5px solid var(--quaternary-red); }
+
+
+.project-card h4 {
+    font-size: 1.7em; 
+    font-weight: 700;
+    color: var(--secondary-dark);
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+}
+
+.project-card p {
+    margin-bottom: 25px;
+    font-size: 1em;
+    color: #6c757d;
+}
+
+/* HOVER EFFECT: Project Link Button (already present, ensured) */
+.project-card .project-link {
+    padding: 10px 25px; 
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    color: var(--text-on-dark);
+}
+
+/* Link Color Matching Card Border Color */
+.project-card:nth-child(1) .project-link { background-color: var(--primary-blue); }
+.project-card:nth-child(1) .project-link:hover { background-color: #0056b3; }
+
+.project-card:nth-child(2) .project-link { background-color: var(--secondary-green); }
+.project-card:nth-child(2) .project-link:hover { background-color: #1e7e34; }
+
+.project-card:nth-child(3) .project-link { 
+    background-color: var(--tertiary-amber); 
+    color: var(--secondary-dark); /* Dark text for light button */
+}
+.project-card:nth-child(3) .project-link:hover { 
+    background-color: #e0a800;
+    color: var(--text-on-dark);
+}
+
+.project-card:nth-child(4) .project-link { background-color: var(--quaternary-red); }
+.project-card:nth-child(4) .project-link:hover { background-color: #c82333; }
+
+
+/*
+=====================================================
+5. CONTACT SECTION
+=====================================================
+*/
+#contact {
+    background-color: var(--text-on-dark);
+}
+
+.contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-intro {
+    margin-bottom: 30px; 
+    font-size: 1.1em; 
+    color: #6c757d;
+}
+
+.contact-form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: var(--secondary-dark);
+}
+
+/* HOVER EFFECT ADDED: Input/Textarea Fields */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px; 
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form input:hover, /* Added hover style */
+.contact-form textarea:hover { /* Added hover style */
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+/* HOVER EFFECT: Send Message Button (already present, ensured) */
+.contact-form button {
+    width: 100%;
+    padding: 15px; 
+    background-color: var(--primary-blue); 
+    color: var(--text-on-dark);
+    border: none;
+    border-radius: 6px;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.social-links {
+    margin-top: 40px; 
+}
+
+/* HOVER EFFECT: Social Media Icons (already present, ensured) */
+.social-links a {
+    font-size: 2.5em; 
+    color: var(--secondary-dark);
+    margin: 0 20px;
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--secondary-green);
+    transform: scale(1.1);
+}
+
+
+/*
+=====================================================
+FOOTER
+=====================================================
+*/
+footer {
+    background-color: var(--secondary-dark);
+    color: var(--text-on-dark);
+    padding: 25px 0; 
+    text-align: center;
+    font-size: 1em;
+}
+
+/*
+=====================================================
+MEDIA QUERIES (RESPONSIVENESS)
+=====================================================
+*/
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; 
+    }
+
+    .hero-content h1 {
+        font-size: 2.8em; 
+    }
+
+    .hero-content p {
+        font-size: 1.2em; 
+    }
+    
+    .profile-pic {
+        width: 120px; 
+        height: 120px;
+    }
+
+    .skill-card {
+        width: 100%;
+        max-width: none;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr; 
+    }
+
+    section {
+        padding: 50px 0;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+}
